@@ -9,21 +9,18 @@
                         <h1>Kindly fill out your Expert Profile:</h1>
                         <hr>
                         <br><br><br>
-                        <form method="post" action="{{ route('profile_type') }}">
+                        <form method="post" action="{{ route('expert_info') }}">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <input type="text" class="form-control" id="headline" aria-describedby="headlineHelp" placeholder="Professional headline" name="skills">
-                                <small id="headlineHelp" class="form-text text-muted">Enter your professional headline</small>
+                                <input type="text" class="form-control" id="headline" aria-describedby="headlineHelp" placeholder="Professional headline" name="headline">
+                                <small id="headlineHelp" class="form-text">Enter your professional headline</small>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" id="descripton" rows="3" placeholder="About You" name="description"></textarea>
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" id="skills" aria-describedby="skillsHelp" placeholder="Skills" name="skills">
-                                <small id="skillsHelp" class="form-text text-muted">Enter skills seperated by commas</small>
-                            </div>
-                            <div class="form-group">
-                                <select class="form-control" id="exampleFormControlSelect1" name="profile_type">
-                                <option value="0">No</option>
-                                <option value="1">Yes</option>
-                                </select>
+                                <small id="skillsHelp" class="form-text">Enter skills seperated by commas</small>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">Next Step...</button>

@@ -23,7 +23,11 @@ class HomeController extends Controller
      */
     public function welcome()
     {
-        return view('welcome');
+        $experts = User::where('profile_type', 1)
+                        ->where('headline', '!=', null)
+                        ->where('skills', '!=', null)
+                        ->paginate(6);
+        return view('welcome', compact('experts'));
     }
 
     /**
