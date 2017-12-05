@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use Auth;
+use App\User;
 use Socialite;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -33,7 +34,7 @@ class AuthController extends Controller
 
         $authUser = $this->findOrCreateUser($user, 'facebook');
         Auth::login($authUser, true);
-        return redirect($this->redirectTo);
+        return redirect()->route('welcome');
     }
 
     /**
@@ -50,10 +51,11 @@ class AuthController extends Controller
             return $authUser;
         }
         return User::create([
-            'name'     => $user->name,
-            'email'    => $user->email,
-            'provider' => 'facebook',
-            'provider_id' => $user->id
+            'name'          => $user->name,
+            'email'         => $user->email,
+            'image'         => $user->avatar,
+            'provider'      => 'facebook',
+            'provider_id'   => $user->id
         ]);
     }
 }

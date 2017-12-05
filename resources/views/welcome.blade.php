@@ -4,16 +4,11 @@
 <!-- ==============================================
      Posts Section
      =============================================== -->
-
      <section class="posts-2">
         <div class="container">
-
             <div class="row">
-
                 <div class="card-deck-wrapper">
-
                     <div class="card-deck">
-
                         <div class="card">
                             <a href="#">
                                 <img class="card-img-top img-fluid" src="img/blog/12.jpg" alt="...">

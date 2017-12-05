@@ -24,7 +24,7 @@
       @guest
       <!-- <li class="nav-item"><a href="{{ route('login') }}" class="nav-link white-text">Login</a></li>
       <li class="nav-item"><a href="{{ route('register') }}" class="nav-link white-text">Register</a></li> -->
-      <li class="nav-item"><a href="{{ route('facebook_auth') }}" class="nav-link white-text">Login / Register</a></li>
+      <li class="nav-item"><a href="{{ url('auth/facebook') }}" class="nav-link white-text"><i class="fa fa-facebook"></i> Login / Register</a></li>
       @else
         <li class="nav-item dropdown mega-notification">
             <a href="#" class="nav-link" data-toggle="dropdown" aria-expanded="true">
