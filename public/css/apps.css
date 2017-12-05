@@ -8369,7 +8369,7 @@ a {
 
 .posts-2 {
     width: 100%;
-    background: #f2f2f2;
+    /* background: #f2f2f2; */
     padding-top: 50px;
     padding-bottom: 30px;
 }
@@ -10907,4 +10907,8 @@ header.profile-3 .content .social-description p {
 
 .white-text {
     color: #fff !important;
+}
+
+.mt-110 {
+    margin-top: -150px;
 }

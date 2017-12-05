@@ -42,7 +42,7 @@
 		<![endif]-->
 
 </head>
-    <body>
+    <body class="greybg">
         @include('includes.header')
         @yield('content')
         @include('includes.footer')
