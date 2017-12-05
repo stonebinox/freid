@@ -32,38 +32,11 @@
                                         <div class="wid-u-info">
                                             <h4 class="m-t-0 m-b-5 font-600">Michelle Kate</h4>
                                             <p class="text-muted m-b-5 font-13">www.themashabrand.com</p>
-                                            <small class="text-warning"><b>Follow</b></small>
+                                            <small class="text-warning"><b>Chat</b></small>
                                         </div>
                                     </div>
                                 </div>
-                            </div>		  
-                            
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card-box widget-user">
-                                    <div>
-                                        <img src="img/users/2.jpg" class="img-fluid rounded-circle" alt="user">
-                                        <div class="wid-u-info">
-                                            <h4 class="m-t-0 m-b-5 font-600">Alex Grantte</h4>
-                                            <p class="text-muted m-b-5 font-13">www.themashabrand.com</p>
-                                            <small class="text-warning"><b>Follow</b></small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-lg-4 col-md-6">
-                                <div class="card-box widget-user">
-                                    <div>
-                                        <img src="img/users/3.jpg" class="img-fluid rounded-circle" alt="user">
-                                        <div class="wid-u-info">
-                                            <h4 class="m-t-0 m-b-5 font-600">David Murlee</h4>
-                                            <p class="text-muted m-b-5 font-13">www.themashabrand.com</p>
-                                            <small class="text-warning"><b>Follow</b></small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>	
-                                    
+                            </div>  
                         </div><!-- row -->
                     </div>
                 </div>

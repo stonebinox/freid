@@ -32,9 +32,15 @@ class AuthController extends Controller
     {
         $user = Socialite::driver('facebook')->user();
 
-        $authUser = $this->findOrCreateUser($user, 'facebook');
-        Auth::login($authUser, true);
-        return redirect()->route('welcome');
+        $authUser = $this->findUser($user);
+        if ($authUser != NULL) {
+            Auth::login($authUser, true);
+            return redirect()->route('welcome');
+        } else {
+            $newUser = $this->createUser($user);
+            Auth::login($newUser, true);
+            return redirect()->route('profile_type');
+        }        
     }
 
     /**
@@ -44,12 +50,13 @@ class AuthController extends Controller
      * @param $provider Social auth provider
      * @return  User
      */
-    public function findOrCreateUser($user)
+    public function findUser($user)
     {
-        $authUser = User::where('provider_id', $user->id)->first();
-        if ($authUser) {
-            return $authUser;
-        }
+        return User::where('provider_id', $user->id)->first();      
+    }
+
+    public function createUser($user)
+    {
         return User::create([
             'name'          => $user->name,
             'email'         => $user->email,

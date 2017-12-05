@@ -9385,14 +9385,16 @@ header.masthead {
 
 /* line 16, ../scss/_page-post.scss */
 
-header.masthead .post-heading {
+header.masthead .post-heading,
+header.onboarding .post-heading {
     padding: 100px 0 50px;
     color: white;
 }
 
 @media only screen and (min-width: 768px) {
     /* line 16, ../scss/_page-post.scss */
-    header.masthead .post-heading {
+    header.masthead .post-heading,
+    header.onboarding .post-heading {
         padding: 150px 0;
     }
 }
@@ -9400,7 +9402,8 @@ header.masthead .post-heading {
 
 /* line 24, ../scss/_page-post.scss */
 
-header.masthead .post-heading h1 {
+header.masthead .post-heading h1,
+header.onboarding .post-heading h1 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     text-align: center;
@@ -9411,7 +9414,8 @@ header.masthead .post-heading h1 {
 
 @media only screen and (max-width: 768px) {
     /* line 33, ../scss/_page-post.scss */
-    header.masthead .post-heading h1 {
+    header.masthead .post-heading h1,
+    header.onboarding .post-heading h1 {
         font-size: 25px;
     }
 }
@@ -10911,4 +10915,13 @@ header.profile-3 .content .social-description p {
 
 .mt-110 {
     margin-top: -150px;
+}
+
+.onboarding {
+    background-color: #777777;
+    background-attachment: scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }

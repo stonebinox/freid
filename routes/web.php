@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', 'HomeController@welcome')->name('welcome');
 
 Auth::routes();
 
@@ -22,3 +20,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 // OAuth Routes
 Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
 Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
+
+Route::any('/profile_type', 'UserController@profileType')->name('profile_type');
+ROute::any('/expert_info', 'UserController@expertInfo')->name('expert_info');
