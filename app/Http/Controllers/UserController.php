@@ -20,6 +20,11 @@ class UserController extends Controller
         switch($method){
             case true:
                 if ($request->profile_type == '1'){
+                    $user = User::find(Auth::user()->id);
+                    
+                    $user->profile_type = 1;
+                    $user->save();
+                    
                     return redirect()->route('expert_info');
                 } else {
                     return redirect()->route('welcome');
