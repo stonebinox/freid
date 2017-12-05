@@ -27,7 +27,18 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        // return view('auth.register');
+        return redirect()->route('welcome');
+    }
 
     /**
      * Create a new controller instance.
