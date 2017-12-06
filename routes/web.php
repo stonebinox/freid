@@ -27,3 +27,4 @@ Route::post('/search', 'HomeController@search')->name('search');
 Route::any('/edit_profile', 'UserController@editProfile')->name('edit_profile');
 Route::get('/become_expert', 'UserController@becomeExpert')->name('become_expert');
 Route::get('/user/{id}', 'UserController@viewProfile')->name('view_profile');
+Route::get('/save/{id}', 'UserController@saveExpert')->name('save_expert');

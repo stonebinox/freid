@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\User;
+use App\Models\Favorite;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function __construct()
     {
-        return $this->middleware('auth');
+        return $this->middleware('auth')->except('viewProfile');
     }
 
     public function profileType(Request $request)
@@ -94,6 +95,25 @@ class UserController extends Controller
         $user = User::find($id);
 
         return view('users.profile', compact('user'));
+    }
+
+    public function saveExpert($id)
+    {
+        Favorite::create([
+            'user_id'   => Auth::user()->id,
+            'expert_id' => $id,
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function favorites()
+    {
+        $experts = Favorite::where('user_id', Auth::user()->id)
+                            ->leftJoin('users', 'favorites.expert_id', '=', 'users.id')
+                            ->paginate(9);
+
+        return view('users.favorites', compact('experts'));
     }
 
 }
