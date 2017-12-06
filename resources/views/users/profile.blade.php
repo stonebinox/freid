@@ -33,7 +33,8 @@
                 @else
                   <button type="button" class="btn btn-success waves-effect waves-light">
                     <i class="fa fa-user m-r-5"></i> Approach
-                  </button>
+                  </button><br/>
+                  <a href="{{ route('save_expert', ['id' => $user->id]) }}"><p class="text-warning"><b>save expert</b></p></a>
                 @endif
               </div><!-- /text-right -->
             </div><!-- /col-sm-6 -->

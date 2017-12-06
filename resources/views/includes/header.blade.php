@@ -88,7 +88,7 @@
                 <a class="dropdown-item" href="#"><span>Messages</span></a>
                 <a class="dropdown-item" href="{{ route('edit_profile') }}"><span>Edit Account</span></a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#"><span>Saved Experts</span></a>
+                <a class="dropdown-item" href="{{ route('favorites') }}"><span>Saved Experts</span></a>
                 @if (Auth::user()->profile_type == 1)
                     <a class="dropdown-item" href="#"><span>Payment Method</span></a>
                 @else
