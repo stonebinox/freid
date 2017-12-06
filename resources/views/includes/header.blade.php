@@ -83,16 +83,16 @@
             </a>
             <div class="dropdown-menu w dropdown-menu-scale pull-right">
                 @if (Auth::user()->profile_type == 1)
-                    <a class="dropdown-item" href=""><span>Balance: </span></a>
+                    <a class="dropdown-item" href="#"><span>Balance: </span></a>
                 @endif
                 <a class="dropdown-item" href="#"><span>Messages</span></a>
-                <a class="dropdown-item" href="#"><span>Edit Account</span></a>
+                <a class="dropdown-item" href="{{ url('edit_profile') }}"><span>Edit Account</span></a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#"><span>Saved Experts</span></a>
                 @if (Auth::user()->profile_type == 1)
                     <a class="dropdown-item" href="#"><span>Payment Method</span></a>
                 @else
-                    <a class="dropdown-item" href="#"><span>Become an Expert</span></a>
+                    <a class="dropdown-item" href="{{ url('become_expert') }}"><span>Become an Expert</span></a>
                 @endif
                 <a class="dropdown-item" href="#">Payment History</a>
                 <div class="dropdown-divider"></div>

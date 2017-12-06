@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Auth;
 use App\User;
 use Socialite;
+use App\Models\Balance;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -38,6 +39,10 @@ class AuthController extends Controller
             return redirect()->route('welcome');
         } else {
             $newUser = $this->createUser($user);
+            Balance::create([
+                'user_id'   => $newUser->id,
+                'balance'   => 0,
+            ]);
             Auth::login($newUser, true);
             return redirect()->route('profile_type');
         }        

@@ -60,4 +60,33 @@ class UserController extends Controller
         }
     }
 
+    public function editProfile(Request $request)
+    {
+        $method = $request->isMethod('post');
+        $user = User::find(Auth::user()->id);
+
+        switch($method){
+            case true:
+                $user->name             = $request->name;
+                $user->headline         = $request->headline;
+                $user->description      = $request->description;
+                $user->skills           = $request->skills;
+                $user->save();
+
+                return redirect()->back();
+            default:
+                return view('users.edit_profile', compact('user'));
+        }
+    }
+
+    public function becomeExpert()
+    {
+        $user = User::find(Auth::user()->id);
+        
+        $user->profile_type = 1;
+        $user->save();
+
+        return redirect()->route('expert_info');
+    }
+
 }

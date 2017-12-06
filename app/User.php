@@ -26,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function balance()
+    {
+        return $this->hasOne('App\Models\Balance');
+    }
 }
