@@ -10,9 +10,10 @@
     <ul class="navbar-nav">
         <!-- Search in right of nav -->
         <li class="nav-item hidden-xs-down">
-            <form class="top_search clearfix">
+            <form class="top_search clearfix" action="{{ route('search') }}" method="post">
                 <div class="top_search_con">
-                    <input class="s" placeholder="Search Here ..." type="text">
+                    {{ csrf_field() }}
+                    <input class="s" placeholder="Software Engineer, Painting, Web Development" type="text" name="s">
                     <span class="top_search_icon"><i class="fa fa-search"></i></span>
                     <input class="top_search_submit" type="submit">
                 </div>

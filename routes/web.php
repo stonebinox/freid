@@ -23,3 +23,4 @@ Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback
 
 Route::any('/profile_type', 'UserController@profileType')->name('profile_type');
 ROute::any('/expert_info', 'UserController@expertInfo')->name('expert_info');
+Route::post('/search', 'HomeController@search')->name('search');

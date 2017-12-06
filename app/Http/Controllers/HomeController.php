@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('welcome');
+        $this->middleware('auth')->except('welcome', 'search');
     }
 
     /**
@@ -38,5 +39,20 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    /**
+     * Show the application homepage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $experts = User::whereRaw("find_in_set('$request->s',skills) > 0")
+                        ->where('headline', '!=', null)
+                        ->where('profile_type', 1)
+                        ->paginate(6);
+        $search = $request->s;
+        return view('search', compact('experts', 'search'));
     }
 }
