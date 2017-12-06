@@ -89,4 +89,11 @@ class UserController extends Controller
         return redirect()->route('expert_info');
     }
 
+    public function viewProfile($id)
+    {
+        $user = User::find($id);
+
+        return view('users.profile', compact('user'));
+    }
+
 }

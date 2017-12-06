@@ -7,7 +7,7 @@
                     <div class="wid-u-info">
                         <h4 class="m-t-0 m-b-5 font-600">{{ $e->name }}</h4>
                         <p class="text-muted m-b-5 font-13">{{ $e->headline }}</p>
-                        <small class="text-warning"><b>Chat</b></small>
+                        <a href="{{ route('view_profile', ['id' => $e->id]) }}"><small class="text-warning"><b>Approach</b></small></a>
                     </div>
                 </div>
             </div>
