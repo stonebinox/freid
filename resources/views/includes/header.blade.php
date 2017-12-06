@@ -74,20 +74,27 @@
         <!-- /navbar-item -->
         <li class="nav-item dropdown mega-avatar">
             <a class="nav-link dropdown-toggle clear" data-toggle="dropdown" aria-expanded="true">
-                <span class="avatar w-32"><img src="img/users/2.jpg" class="w-full rounded" width="25" height="25" alt="..."></span>
+                <span class="avatar w-32"><img src="{{ Auth::user()->image }}" class="w-full rounded" width="25" height="25" alt="..."></span>
                 <i class="mini"></i>
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                 <span class="hidden-xs">
-                  Alex Grantte
+                  {{ Auth::user()->name }}
                 </span>
             </a>
             <div class="dropdown-menu w dropdown-menu-scale pull-right">
-                <a class="dropdown-item" href="#"><span>New Story</span></a>
-                <a class="dropdown-item" href="#"><span>Become a Member</span></a>
+                @if (Auth::user()->profile_type == 1)
+                    <a class="dropdown-item" href=""><span>Balance: </span></a>
+                @endif
+                <a class="dropdown-item" href="#"><span>Messages</span></a>
+                <a class="dropdown-item" href="#"><span>Edit Account</span></a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="profile.html"><span>Profile</span></a>
-                <a class="dropdown-item" href="#"><span>Settings</span></a>
-                <a class="dropdown-item" href="#">Need help?</a>
+                <a class="dropdown-item" href="#"><span>Saved Experts</span></a>
+                @if (Auth::user()->profile_type == 1)
+                    <a class="dropdown-item" href="#"><span>Payment Method</span></a>
+                @else
+                    <a class="dropdown-item" href="#"><span>Become an Expert</span></a>
+                @endif
+                <a class="dropdown-item" href="#">Payment History</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item"  href="{{ route('logout') }}"
                   onclick="event.preventDefault();
