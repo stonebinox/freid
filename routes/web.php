@@ -35,6 +35,16 @@ Route::prefix('/messages')->group(function() {
   Route::any('/create/{id}', 'ConversationsController@create')->name('create_conversation');
   Route::get('/view/{id}', 'MessagesController@view')->name('view_conversation');
   Route::post('/respond/{id}', 'MessagesController@respond')->name('respond');
-  Route::get('/close/{id}', 'ConversationController@close')->name('close_conversation');
+  Route::get('/close/{id}', 'ConversationsController@close')->name('close_conversation');
   Route::get('/', 'ConversationsController@view')->name('all_conversation');
 });
+
+Route::get('/pay/success', 'PaymentsController@paySuccess')->name('pay_success');
+Route::get('/pay/history', 'PaymentsController@paymentHistory')->name('pay_history');
+Route::any('/pay/{id}', 'PaymentsController@payPage')->name('pay_page');
+
+Route::any('/money/withdraw', 'WithdrawalsController@withdrawal')->name('make_withdrawal');
+Route::get('/admin/withdrawals', 'WithdrawalsController@adminWithdrawals')->name('admin_withdrawals');
+Route::get('/admin/complete/{id}', 'WithdrawalsController@complete')->name('mark_completed');
+
+Route::any('/add/paypal', 'MethodsController@paypal')->name('paypal');

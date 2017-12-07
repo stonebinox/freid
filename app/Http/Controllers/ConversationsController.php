@@ -55,15 +55,16 @@ class ConversationsController extends Controller
     public function close($id)
     {
         $conversation = Conversation::find($id);
-        if (Auth::user()->id != $conversation->user1_id || Auth::user()->id != $conversation->user2_id)
+        if (Auth::user()->id != $conversation->user1_id)
         {
             return redirect()->route('welcome');
         }
         
         $conversation->closed = 1;
         $conversation->save();
-
-        return redirect()->back();
+        
+        $user = User::find($conversation->user2_id);
+        return redirect()->route('pay_page', ['id' => $user->id]);
     }
 
     public function view()

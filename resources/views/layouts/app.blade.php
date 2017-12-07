@@ -50,5 +50,6 @@
         <script src="{{ asset('bower_components/tether/dist/js/tether.min.js') }}"></script>
         <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.js') }}"></script>
         <script src="{{ asset('js/medium.js') }}"></script>
+        @yield('scripts')
     </body>
 </html>

@@ -36,4 +36,14 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Message');
     }
+
+    public function withdrawal()
+    {
+        return $this->hasMany('App\Models\Withdrawals');
+    }
+
+    public function method()
+    {
+        return $this->hasMany('App\Models\Method');
+    }
 }

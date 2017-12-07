@@ -23,29 +23,47 @@
                           <div class="content">
                             <div class="dev-list">
                               <div class="dev-list-item verified">
-                                @forelse($open as $o)
-                                  @if ($o->user1_id == Auth::user()->id || $o->user2_id == Auth::user()->id)
-                                    @if ($o->user1_id == Auth::user()->id)
-                                      <?php $recipient = \App\User::find($o->user2_id); ?>
-                                    @else
-                                      <?php $recipient = \App\User::find($o->user1_id); ?>
-                                    @endif
-                                    <h4 style="color:#000;"><a style="text-decoration: none; color: #2C3E50;" href="{{ route('view_conversation', ['id' => $o->id]) }}">=> {{ $recipient->name }} - {{ $o->subject }}</a></h4>
-                                  @endif
-                                @empty
-                                  <p>No messages yet!</p>
-                                @endforelse
-                                @forelse($closed as $c)
-                                  @if ($c->user1_id == Auth::user()->id || $c->user2_id == Auth::user()->id)
-                                    @if ($oc->user1_id == Auth::user()->id)
-                                      <?php $recipient = \App\User::find($c->user2_id); ?>
-                                    @else
-                                      <?php $recipient = \App\User::find($c->user1_id); ?>
-                                    @endif
-                                    <h4 style="color:#000;"><a style="text-decoration: none; color: #2C3E50;" href="{{ route('view_conversation', ['id' => $c->id]) }}">=> {{ $recipient->name }} - {{ $c->subject }}</a></h4>
-                                  @endif
-                                @empty
-                                @endforelse
+                                <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th>Name</th>
+                                      <th>Subject</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    @forelse($open as $o)
+                                      @if ($o->user1_id == Auth::user()->id || $o->user2_id == Auth::user()->id)
+                                        @if ($o->user1_id == Auth::user()->id)
+                                          <?php $recipient = \App\User::find($o->user2_id); ?>
+                                        @else
+                                          <?php $recipient = \App\User::find($o->user1_id); ?>
+                                        @endif
+                                        <tr>
+                                          <td>{{ $recipient->name }}</td>
+                                          <td><a style="text-decoration: none; color: #2C3E50;" href="{{ route('view_conversation', ['id' => $o->id]) }}">{{ $o->subject }}</a></td>
+                                        </tr>
+                                      @endif                            
+                                      @empty
+                                      @endforelse
+                                      @forelse($closed as $c)
+                                        @if ($c->user1_id == Auth::user()->id || $c->user2_id == Auth::user()->id)
+                                          @if ($c->user1_id == Auth::user()->id)
+                                            <?php $recipient = \App\User::find($c->user2_id); ?>
+                                          @else
+                                            <?php $recipient = \App\User::find($c->user1_id); ?>
+                                          @endif
+                                          <tr>
+                                            <td>{{ $recipient->name }}</td>
+                                            <td><a style="text-decoration: none; color: #2C3E50;" href="{{ route('view_conversation', ['id' => $c->id]) }}">{{ $c->subject }}</a></td>
+                                          </tr>
+                                        @endif
+                                      @empty
+                                      @endforelse
+                                      @if ($open == NULL && $closed == NULL)
+                                        <p>No messages yet!</p>
+                                      @endif                                   
+                                  </tbody>
+                                </table>
                               </div>
                             </div>
                           </div>

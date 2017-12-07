@@ -57,7 +57,7 @@
                 <!--Message box & Send Button-->
                 <div class="row send-wrap">
                     <div class="col-sm-12">
-                        @if ($conversation->close == 1)
+                        @if ($conversation->closed == 1)
                             <p>Conversation has been marked resolved!</p>
                         @else
                             <form action="{{ route('respond', ['id' => $conversation->id]) }}" method="post">

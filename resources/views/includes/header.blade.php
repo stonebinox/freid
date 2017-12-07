@@ -88,12 +88,12 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('favorites') }}"><span>Saved Experts</span></a>
                 @if (Auth::user()->profile_type == 1)
-                    <a class="dropdown-item" href="#"><span>Payment Method</span></a>
-                    <a class="dropdown-item" href="#"><span>Request Withdrawal</span></a>
+                    <a class="dropdown-item" href="{{ route('paypal') }}"><span>Payment Method</span></a>
+                    <a class="dropdown-item" href="{{ route('make_withdrawal') }}"><span>Request Withdrawal</span></a>
                 @else
                     <a class="dropdown-item" href="{{ route('become_expert') }}"><span>Become an Expert</span></a>
                 @endif
-                <a class="dropdown-item" href="#">Payment History</a>
+                <a class="dropdown-item" href="{{ route('pay_history') }}">Payment History</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item"  href="{{ route('logout') }}"
                   onclick="event.preventDefault();
