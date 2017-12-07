@@ -31,4 +31,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\Balance');
     }
+
+    public function messages()
+    {
+        return $this->hasMany('App\Models\Message');
+    }
 }

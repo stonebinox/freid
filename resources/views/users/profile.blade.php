@@ -31,9 +31,11 @@
                     </button>
                   </a>
                 @else
-                  <button type="button" class="btn btn-success waves-effect waves-light">
-                    <i class="fa fa-user m-r-5"></i> Approach
-                  </button><br/>
+                  <a href="{{ route('create_conversation', ['id' => $user->id]) }}">
+                    <button type="button" class="btn btn-success waves-effect waves-light">
+                      <i class="fa fa-user m-r-5"></i> Approach
+                    </button>
+                  </a><br/>
                   <a href="{{ route('save_expert', ['id' => $user->id]) }}"><p class="text-warning"><b>save expert</b></p></a>
                 @endif
               </div><!-- /text-right -->
@@ -57,7 +59,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 offset-md-2">
-          <a href="#" class="kafe-btn kafe-btn-default"> Approach</a>
+          <a href="{{ route('create_conversation', ['id' => $user->id]) }}" class="kafe-btn kafe-btn-default"> Approach</a>
         </div><!-- /.col-lg-8 -->
       </div><!-- /.row -->
     </div><!-- /container -->

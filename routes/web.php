@@ -29,3 +29,12 @@ Route::get('/become_expert', 'UserController@becomeExpert')->name('become_expert
 Route::get('/user/{id}', 'UserController@viewProfile')->name('view_profile');
 Route::get('/save/{id}', 'UserController@saveExpert')->name('save_expert');
 Route::get('/saved', 'UserController@favorites')->name('favorites');
+
+Route::prefix('/messages')->group(function() {
+  Route::get('/{id}', 'ConversationsController@getConversation')->name('get_conversation');
+  Route::any('/create/{id}', 'ConversationsController@create')->name('create_conversation');
+  Route::get('/view/{id}', 'MessagesController@view')->name('view_conversation');
+  Route::post('/respond/{id}', 'MessagesController@respond')->name('respond');
+  Route::get('/close/{id}', 'ConversationController@close')->name('close_conversation');
+  Route::get('/', 'ConversationsController@view')->name('all_conversation');
+});

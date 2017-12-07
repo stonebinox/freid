@@ -23,9 +23,7 @@
     </ul>
     <ul class="nav navbar-nav">
       @guest
-      <!-- <li class="nav-item"><a href="{{ route('login') }}" class="nav-link white-text">Login</a></li>
-      <li class="nav-item"><a href="{{ route('register') }}" class="nav-link white-text">Register</a></li> -->
-      <li class="nav-item"><a href="{{ url('auth/facebook') }}" class="nav-link white-text"><i class="fa fa-facebook"></i> Login / Register</a></li>
+        <li class="nav-item"><a href="{{ url('auth/facebook') }}" class="nav-link white-text"><i class="fa fa-facebook"></i> Login / Register</a></li>
       @else
         <li class="nav-item dropdown mega-notification">
             <a href="#" class="nav-link" data-toggle="dropdown" aria-expanded="true">
@@ -75,7 +73,7 @@
         <li class="nav-item dropdown mega-avatar">
             <a class="nav-link dropdown-toggle clear" data-toggle="dropdown" aria-expanded="true">
                 <span class="avatar w-32"><img src="{{ Auth::user()->image }}" class="w-full rounded" width="25" height="25" alt="..."></span>
-                <i class="mini"></i>
+                <!--<i class="mini"></i>-->
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                 <span class="hidden-xs">
                   {{ Auth::user()->name }}
@@ -83,14 +81,15 @@
             </a>
             <div class="dropdown-menu w dropdown-menu-scale pull-right">
                 @if (Auth::user()->profile_type == 1)
-                    <a class="dropdown-item" href="#"><span>Balance: </span></a>
+                    <a class="dropdown-item" href="#"><span>Balance: ${{ (Auth::user()->balance->balance != NULL) ? Auth::user()->balance->balance : 0 }}</span></a>
                 @endif
-                <a class="dropdown-item" href="#"><span>Messages</span></a>
+                <a class="dropdown-item" href="{{ route('all_conversation') }}"><span>Messages</span></a>
                 <a class="dropdown-item" href="{{ route('edit_profile') }}"><span>Edit Account</span></a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('favorites') }}"><span>Saved Experts</span></a>
                 @if (Auth::user()->profile_type == 1)
                     <a class="dropdown-item" href="#"><span>Payment Method</span></a>
+                    <a class="dropdown-item" href="#"><span>Request Withdrawal</span></a>
                 @else
                     <a class="dropdown-item" href="{{ route('become_expert') }}"><span>Become an Expert</span></a>
                 @endif
