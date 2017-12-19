@@ -39,7 +39,7 @@
                                           <?php $recipient = \App\User::find($o->user1_id); ?>
                                         @endif
                                         <tr>
-                                          <td>{{ $recipient->name }}</td>
+                                          <td><a style="text-decoration: none; color: #818B8D !important;" href="{{ route('view_profile', ['id' => $recipient->id]) }}">{{ $recipient->name }}</a></td>
                                           <td><a style="text-decoration: none; color: #2C3E50;" href="{{ route('view_conversation', ['id' => $o->id]) }}">{{ $o->subject }}</a></td>
                                         </tr>
                                       @endif                            
@@ -53,7 +53,7 @@
                                             <?php $recipient = \App\User::find($c->user1_id); ?>
                                           @endif
                                           <tr>
-                                            <td>{{ $recipient->name }}</td>
+                                            <td><a style="text-decoration: none; color: #818B8D !important;" href="{{ route('view_profile', ['id' => $recipient->id]) }}">{{ $recipient->name }}</a></td>
                                             <td><a style="text-decoration: none; color: #2C3E50;" href="{{ route('view_conversation', ['id' => $c->id]) }}">{{ $c->subject }}</a></td>
                                           </tr>
                                         @endif

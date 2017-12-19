@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\User;
+use App\Models\Report;
+use App\Models\Review;
 use App\Models\Favorite;
 use Illuminate\Http\Request;
 
@@ -107,6 +109,14 @@ class UserController extends Controller
         return redirect()->back();
     }
 
+    public function removeExpert($id)
+    {
+        $expert = Favorite::where('user_id', Auth::user()->id)
+                           ->where('expert_id', $id)
+                           ->delete();
+        return redirect()->back();
+    }
+
     public function favorites()
     {
         $experts = Favorite::where('user_id', Auth::user()->id)
@@ -114,6 +124,25 @@ class UserController extends Controller
                             ->paginate(9);
 
         return view('users.favorites', compact('experts'));
+    }
+
+    public function report_user($id, Request $request)
+    {
+        $method = $request->isMethod('post');
+        $user = User::find($id);
+        switch($method){
+            case true:
+                $reports = Report::create([
+                    'user_id'   => Auth::user()->id,
+                    'experts_id' => $id,
+                    'reason'    => $request->reason,
+                ]);
+        
+                return redirect()->route('welcome');
+            default:
+                return view('users.report', compact('user'));
+        }
+        
     }
 
 }

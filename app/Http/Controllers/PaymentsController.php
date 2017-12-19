@@ -50,7 +50,7 @@ class PaymentsController extends Controller
                 $balance->save();
 
                 // Stripe charge was successfull, continue by redirecting to a page with a thank you message
-                return redirect()->route('pay_success');
+                return redirect()->route('create_review', ['id' => $user->id]);
             default:
                 return view('payments.pay_page', compact('user'));
         }        

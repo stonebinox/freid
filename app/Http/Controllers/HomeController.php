@@ -25,6 +25,7 @@ class HomeController extends Controller
     public function welcome()
     {
         $experts = User::where('profile_type', 1)
+                        ->where('active', 1)
                         ->where('headline', '!=', null)
                         ->where('skills', '!=', null)
                         ->paginate(6);
@@ -51,6 +52,7 @@ class HomeController extends Controller
         $experts = User::whereRaw("find_in_set('$request->s',skills) > 0")
                         ->where('headline', '!=', null)
                         ->where('profile_type', 1)
+                        ->where('active', 1)
                         ->paginate(6);
         $search = $request->s;
         return view('search', compact('experts', 'search'));

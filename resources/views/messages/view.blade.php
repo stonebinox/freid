@@ -47,7 +47,7 @@
                     <div class="msg">
                         <div class="media-body">
                             <!--<small class="pull-right time"><i class="fa fa-clock-o"></i> </small>-->
-                            <h5 class="media-heading">{{ $m->user->name }}</h5>
+                            <h5 class="media-heading"><a style="text-decoration: none; color: #2C3E50 !important;" href="{{ route('view_profile', ['id' => $m->user->id]) }}">{{ $m->user->name }}</a></h5>
                             <small class="col-sm-11">{{ $m->message }}</small>
                         </div>
                     </div>

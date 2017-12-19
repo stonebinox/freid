@@ -37,6 +37,7 @@
                     </button>
                   </a><br/>
                   <a href="{{ route('save_expert', ['id' => $user->id]) }}"><p class="text-warning"><b>save expert</b></p></a>
+                  <a href="{{ route('report', ['id' => $user->id]) }}"><small class="text-warning"><b><i class="fa fa-exclamation-triangle"></i>report expert</b></small></a>
                 @endif
               </div><!-- /text-right -->
             </div><!-- /col-sm-6 -->
@@ -64,4 +65,28 @@
       </div><!-- /.row -->
     </div><!-- /container -->
   </section><!-- /w -->
+@endsection
+@section('scripts')
+<script type="text/javascript">
+  #add").click(function() {
+$.ajax({
+type: 'get',
+url: '{{ route("") }}',
+data: {
+'_token': $('input[name=_token]').val(),
+'name': $('input[name=name]').val()
+},
+success: function(data) {
+if ((data.errors)) {
+$('.error').removeClass('hidden');
+$('.error').text(data.errors.name);
+} else {
+$('.error').remove();
+$('#table').append("<tr class='item" + data.id + "'><td>" + data.id + "</td><td>" + data.name + "</td><td><button class='edit-modal btn btn-info' data-id='" + data.id + "' data-name='" + data.name + "'><span class='glyphicon glyphicon-edit'></span> Edit</button> <button class='delete-modal btn btn-danger' data-id='" + data.id + "' data-name='" + data.name + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
+}
+},
+});
+$('#name').val('');
+});
+</script>
 @endsection
