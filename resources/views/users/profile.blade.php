@@ -65,13 +65,36 @@
       </div><!-- /.row -->
     </div><!-- /container -->
   </section><!-- /w -->
+
+
+  <!-- REVIEWS -->
+  <section class="entry-content">
+    <div class="container">
+      <h3 class="title">Reviews</h3>
+      <hr>
+      <div class="profile-user-box">
+        <div class="row">
+        @forelse($reviews as $r)
+          <div class="col-sm-12">
+            <span class="pull-left m-r-15"><img src="{{ $r->user->image }}" alt="" class="thumb-lg img-circle"></span>
+            <div class="media-body">
+              <h4 class="m-t-5 m-b-5 ellipsis">{{ $r->user->name }}</h4>
+              <p class="font-13">{{ $r->review }}</p>
+            </div><!-- /media-body -->
+          </div><!-- /col-sm-6 -->
+        @empty
+        @endforelse
+        </div><!-- /row -->
+      </div><!--/ profile-user-box -->
+    </div><!-- /container -->
+  </section><!-- /entry-content -->	
 @endsection
 @section('scripts')
 <script type="text/javascript">
   #add").click(function() {
 $.ajax({
 type: 'get',
-url: '{{ route("") }}',
+url: '#',
 data: {
 '_token': $('input[name=_token]').val(),
 'name': $('input[name=name]').val()

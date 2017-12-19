@@ -20,7 +20,7 @@
                     <div id="charge-error" class="{{ Session::has('error') ? '' : 'hidden' }}">
                       <div class="alert alert-danger">{{ Session::get('error') }}</div>
                     </div>
-                    <form method="post" action="{{ route('pay_page', ['id' => $user->id]) }}" id="payment_form">
+                    <form method="post" action="{{ route('pay_page', ['id' => $user->id, 'c_id' => $c_id]) }}" id="payment_form">
                         {{ csrf_field() }}
                         <div class="form-group">
                           <div class="input-group mb-4 mb-sm-0">

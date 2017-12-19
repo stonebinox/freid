@@ -28,48 +28,30 @@
         <li class="nav-item dropdown mega-notification">
             <a href="#" class="nav-link" data-toggle="dropdown" aria-expanded="true">
                 <i class="fa fa-bell-o"></i>
-                <span class="label up p-a-0 danger"></span>
+                <?php $notifications = get_user_notification(); ?>
+                @if ($notifications->count() != 0)
+                    <span class="label up p-a-0 danger"></span>
+                @endif
             </a>
             <div class="dropdown-menu pull-right w-xl no-bg no-border no-shadow">
                 <div class="scrollable">
                     <ul class="list-group list-group-gap m-a-0">
-                        <li class="list-group-item dark-white box-shadow-z0 b">
-                            <span class="pull-left m-r">
-                              <img src="img/users/3.jpg" alt="..." class="w-40 img-circle">
-                            </span>
-                            <span class="clear block">Use awesome <a href="#" class="text-primary">animate.css</a><br>
-                            <small class="text-muted">10 minutes ago</small>
-                          </span>
-                        </li>
-                        <!-- /list-group-item -->
-                        <li class="list-group-item dark-white box-shadow-z0 b">
-                            <span class="pull-left m-r">
-                              <img src="img/users/5.jpg" alt="..." class="w-40 img-circle">
-                            </span>
-                            <span class="clear block">
-                              <a href="#" class="text-primary">Kyle</a> Added you as friend<br>
-                              <small class="text-muted">2 hours ago</small>
-                            </span>
-                        </li>
-                        <!-- /list-group-item -->
-                        <li class="list-group-item dark-white text-color box-shadow-z0 b">
-                            <span class="pull-left m-r">
-                              <img src="img/users/4.jpg" alt="..." class="w-40 img-circle">
-                            </span>
-                            <span class="clear block">
-                              <a href="#" class="text-primary">Jonathan</a> sent you a message<br>
-                              <small class="text-muted">1 day ago</small>
-                            </span>
-                        </li>
-                        <!-- /list-group-item -->
+                        @forelse ($notifications as $n)
+                            <li class="list-group-item dark-white box-shadow-z0 b">
+                                <span class="clear block">
+                                    @if ($n->amount != null)
+                                        <a href="{{ route('to_conversation', ['id' => $n->conversation_id, 'n_id' => $n->id]) }}" class="text-primary">{{ $n->user->name }} paid you ${{ $n->user->amount }}</a>
+                                    @else
+                                        <a href="{{ route('to_conversation', ['id' => $n->conversation_id, 'n_id' => $n->id]) }}" class="text-primary">{{ $n->user->name }} sent you a message</a>
+                                    @endif
+                                </span>
+                            </li>
+                        @empty
+                        @endforelse
                     </ul>
-                    <!-- /list-group -->
                 </div>
-                <!-- /scrollable -->
             </div>
-            <!-- /dropdown-menu -->
         </li>
-        <!-- /navbar-item -->
         <li class="nav-item dropdown mega-avatar">
             <a class="nav-link dropdown-toggle clear" data-toggle="dropdown" aria-expanded="true">
                 <span class="avatar w-32"><img src="{{ Auth::user()->image }}" class="w-full rounded" width="25" height="25" alt="..."></span>

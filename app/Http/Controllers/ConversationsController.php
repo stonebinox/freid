@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\User;
 use App\Models\Message;
+use App\Models\Notification;
 use App\Models\Conversation;
 use Illuminate\Http\Request;
 
@@ -39,10 +40,17 @@ class ConversationsController extends Controller
                     'subject'       => $request->subject,
                 ]);
 
-                $message = Message::create([
+                Message::create([
                     'conversation_id'   => $conversation->id,
                     'user_id'           => Auth::user()->id,
                     'message'           => $request->message,
+                ]);
+
+                Notification::create([
+                    'sender_id'         => Auth::user()->id,
+                    'receiver_id'       => $id,
+                    'conversation_id'   => $conversation->id,
+                    'read'              => 0,
                 ]);
 
                 return redirect()->route('view_conversation', ['id' => $conversation->id]);
@@ -64,7 +72,7 @@ class ConversationsController extends Controller
         $conversation->save();
         
         $user = User::find($conversation->user2_id);
-        return redirect()->route('pay_page', ['id' => $user->id]);
+        return redirect()->route('pay_page', ['id' => $user->id, 'c_id' => $conversation->id]);
     }
 
     public function view()

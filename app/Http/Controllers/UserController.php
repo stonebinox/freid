@@ -95,8 +95,9 @@ class UserController extends Controller
     public function viewProfile($id)
     {
         $user = User::find($id);
+        $reviews = Review::where('expert_id', $id)->orderBy('id', 'desc')->get();
 
-        return view('users.profile', compact('user'));
+        return view('users.profile', compact('user', 'reviews'));
     }
 
     public function saveExpert($id)

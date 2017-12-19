@@ -41,9 +41,12 @@ Route::prefix('/messages')->group(function() {
   Route::get('/', 'ConversationsController@view')->name('all_conversation');
 });
 
+Route::get('/to_conversation/{id}/{n_id}', 'NotificationController@to_conversation')->name('to_conversation');
+
+
 Route::get('/pay/success', 'PaymentsController@paySuccess')->name('pay_success');
 Route::get('/pay/history', 'PaymentsController@paymentHistory')->name('pay_history');
-Route::any('/pay/{id}', 'PaymentsController@payPage')->name('pay_page');
+Route::any('/pay/{id}/{c_id}', 'PaymentsController@payPage')->name('pay_page');
 
 Route::any('/review/{id}', 'ReviewsController@create')->name('create_review');
 

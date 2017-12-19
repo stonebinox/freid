@@ -17,11 +17,12 @@ class PaymentsController extends Controller
         return $this->middleware('auth');
     }
 
-    public function payPage($id, Request $request)
+    public function payPage($id, $c_id, Request $request)
     {
         $method = $request->isMethod('post');
         $user = User::find($id);
-        switch($method){
+        switch($method)
+        {
             case true:
                 //Amount
                 $amount = $request->amount * 100;
@@ -49,10 +50,17 @@ class PaymentsController extends Controller
                 $balance->balance += $request->amount;
                 $balance->save();
 
+                Notification::create([
+                    'sender_id'             => Auth::user()->id,
+                    'receiver_id'           => $user->id,
+                    'amount'                => $request->amount,
+                    'conversation_id'       => $c_id,
+                ]);
+
                 // Stripe charge was successfull, continue by redirecting to a page with a thank you message
                 return redirect()->route('create_review', ['id' => $user->id]);
             default:
-                return view('payments.pay_page', compact('user'));
+                return view('payments.pay_page', compact('user', 'c_id'));
         }        
     }
 

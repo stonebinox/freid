@@ -24,12 +24,15 @@ class HomeController extends Controller
      */
     public function welcome()
     {
+        $notifications = get_user_notification();
+        // dd($notifications);
+
         $experts = User::where('profile_type', 1)
                         ->where('active', 1)
                         ->where('headline', '!=', null)
                         ->where('skills', '!=', null)
                         ->paginate(6);
-        return view('welcome', compact('experts'));
+        return view('welcome', compact('experts', 'notifications'));
     }
 
     /**
