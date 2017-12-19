@@ -61,3 +61,4 @@ Route::prefix('/admin')->group(function() {
   Route::get('/deactivate/{id}', 'AdminController@deactivate_user')->name('admin_deactivate');
   Route::get('/mark/{id}', 'AdminController@mark_report')->name('admin_mark_report');
 });
+

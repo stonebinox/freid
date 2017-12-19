@@ -8,7 +8,12 @@ class Notification extends Model
 {
     protected $guarded = ['id'];
 
-    public function user()
+    public function sender()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    public function receiver()
     {
         return $this->belongsTo('App\User');
     }

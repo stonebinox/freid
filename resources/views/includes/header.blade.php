@@ -21,6 +21,7 @@
         </li>
         <!-- Search Ends -->
     </ul>
+
     <ul class="nav navbar-nav">
       @guest
         <li class="nav-item"><a href="{{ url('auth/facebook') }}" class="nav-link white-text"><i class="fa fa-facebook"></i> Login / Register</a></li>
@@ -40,9 +41,9 @@
                             <li class="list-group-item dark-white box-shadow-z0 b">
                                 <span class="clear block">
                                     @if ($n->amount != null)
-                                        <a href="{{ route('to_conversation', ['id' => $n->conversation_id, 'n_id' => $n->id]) }}" class="text-primary">{{ $n->user->name }} paid you ${{ $n->user->amount }}</a>
+                                        <a href="{{ route('to_conversation', ['id' => $n->conversation_id, 'n_id' => $n->id]) }}" class="text-primary">{{ $n->sender->name }} paid you ${{ $n->amount }}</a>
                                     @else
-                                        <a href="{{ route('to_conversation', ['id' => $n->conversation_id, 'n_id' => $n->id]) }}" class="text-primary">{{ $n->user->name }} sent you a message</a>
+                                        <a href="{{ route('to_conversation', ['id' => $n->conversation_id, 'n_id' => $n->id]) }}" class="text-primary">{{ $n->sender->name }} sent you a message</a>
                                     @endif
                                 </span>
                             </li>

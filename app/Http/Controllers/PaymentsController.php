@@ -8,7 +8,9 @@ use Stripe\Stripe;
 use Stripe\Charge;
 use App\Models\Balance;
 use App\Models\Transaction;
+use App\Models\Notification;
 use Illuminate\Http\Request;
+use App\Mail\PaymentEmail;
 
 class PaymentsController extends Controller
 {
@@ -24,7 +26,6 @@ class PaymentsController extends Controller
         switch($method)
         {
             case true:
-                //Amount
                 $amount = $request->amount * 100;
                 
                 Stripe::setApiKey(env('STRIPE_SECRET'));
@@ -36,7 +37,7 @@ class PaymentsController extends Controller
                         "description"   => "Payment for {{ $user->name }}",
                     ));
                 }   catch (\Exception $e) {
-                    return redirect()->route('pay_page')->with('error', $e->getMessage());
+                    return redirect()->route('pay_page', ['id' => $user->id, 'c_id' => $c_id])->with('error', $e->getMessage());
                 }
 
                 Transaction::create([
@@ -50,12 +51,17 @@ class PaymentsController extends Controller
                 $balance->balance += $request->amount;
                 $balance->save();
 
-                Notification::create([
+                $notification = Notification::create([
                     'sender_id'             => Auth::user()->id,
                     'receiver_id'           => $user->id,
                     'amount'                => $request->amount,
                     'conversation_id'       => $c_id,
+                    'read'                  => 0,
                 ]);
+
+                
+                $data = ['notification' => $notification];
+                \Mail::to($notification->receiver->email)->send(new NewMessageEmail($data));
 
                 // Stripe charge was successfull, continue by redirecting to a page with a thank you message
                 return redirect()->route('create_review', ['id' => $user->id]);

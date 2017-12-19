@@ -42,18 +42,18 @@
                     </div>
                 </div>
                 <!--Messages-->
-                <div class="row content-wrap messages">
-                  @forelse($messages as $m)
-                    <div class="msg">
-                        <div class="media-body">
-                            <!--<small class="pull-right time"><i class="fa fa-clock-o"></i> </small>-->
-                            <h5 class="media-heading"><a style="text-decoration: none; color: #2C3E50 !important;" href="{{ route('view_profile', ['id' => $m->user->id]) }}">{{ $m->user->name }}</a></h5>
-                            <small class="col-sm-11">{{ $m->message }}</small>
+                @forelse($messages as $m)
+                    <div class="row content-wrap messages">
+                        <div class="msg">
+                            <div class="media-body">
+                                <!--<small class="pull-right time"><i class="fa fa-clock-o"></i> </small>-->
+                                <h5 class="media-heading"><a style="text-decoration: none; color: #2C3E50 !important;" href="{{ route('view_profile', ['id' => $m->user->id]) }}">{{ $m->user->name }}</a></h5>
+                                <small class="col-sm-11">{{ $m->message }}</small>
+                            </div>
                         </div>
                     </div>
-                  @empty
-                  @endforelse
-                </div>
+                @empty
+                @endforelse
                 <!--Message box & Send Button-->
                 <div class="row send-wrap">
                     <div class="col-sm-12">
@@ -61,9 +61,10 @@
                             <p>Conversation has been marked resolved!</p>
                         @else
                             <form action="{{ route('respond', ['id' => $conversation->id]) }}" method="post">
+                                {{ csrf_field() }}
                                 <div class="send-message">
                                     <div class="message-text">
-                                        <textarea class="no-resize-bar form-control" rows="2" placeholder="Write a message..."></textarea>
+                                        <textarea class="no-resize-bar form-control" rows="2" placeholder="Write a message..." name="message"></textarea>
                                     </div>
                                     <div class="send-button">
                                         <button type="submit" class="btn">Send <i class="fa fa-send"></i></button>

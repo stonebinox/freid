@@ -8,6 +8,7 @@ use App\Models\Message;
 use App\Models\Notification;
 use App\Models\Conversation;
 use Illuminate\Http\Request;
+use App\Mail\NewMessageEmail;
 
 class ConversationsController extends Controller
 {
@@ -46,12 +47,15 @@ class ConversationsController extends Controller
                     'message'           => $request->message,
                 ]);
 
-                Notification::create([
+                $notification = Notification::create([
                     'sender_id'         => Auth::user()->id,
                     'receiver_id'       => $id,
                     'conversation_id'   => $conversation->id,
                     'read'              => 0,
                 ]);
+
+                $data = ['notification' => $notification];
+                \Mail::to($notification->receiver->email)->send(new NewMessageEmail($data));
 
                 return redirect()->route('view_conversation', ['id' => $conversation->id]);
             default:
